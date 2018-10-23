@@ -1,12 +1,14 @@
 var User = require('../db/models/user');
 module.exports = (function(){
-    var getAllCfg = function(req,res,next) {
+    var getAllCfg = async (req,res,next) => {
         throw new Error('This is an exception')
     };
-    var doSaveCfg = function(req,res,next){ 
+    var addCfg =  (req,res,next) => {
+        console.log(req.body);     
+        res.json('Added API');   
     };
     return {
         getAllCfg : getAllCfg,
-        saveCfg : doSaveCfg
+        addCfg : addCfg
     }
 }());

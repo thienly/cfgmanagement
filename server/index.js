@@ -1,10 +1,17 @@
+
 const express = require('express');
 const routes = require('./routes');
-var errHandler = require('./middleware/errorhandlers');
-var config = require('./common/configuration/config');
-var asyncmiddleware = require('./middleware/asyncmiddleware');
-var app = express();
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
+var errHandler = require('./middleware/errorhandlers');
+
+var app = express();
+app.use(bodyParser.urlencoded({
+    extended:true
+}));
+app.use(bodyParser.json());
+app.use(methodOverride());
 app.use(routes);
 app.use(errHandler.logging);
 app.use(errHandler.clientErrorHandler);
