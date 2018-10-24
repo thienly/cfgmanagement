@@ -4,8 +4,8 @@ module.exports = (function(){
         throw new Error('This is an exception')
     };
     var addCfg =  (req,res,next) => {
-        console.log(req.body);     
-        res.json('Added API');   
+        console.log(req.body);
+        console.log(req.body.param1);        
     };
     return {
         getAllCfg : getAllCfg,
