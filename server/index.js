@@ -7,9 +7,11 @@ var methodOverride = require('method-override');
 var errHandler = require('./middleware/errorhandlers');
 
 var app = express();
+
 app.use(bodyParser.urlencoded({
     extended:true
 }));
+
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(routes);

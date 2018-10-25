@@ -1,14 +1,20 @@
-var User = require('../db/models/user');
-module.exports = (function(){
-    var getAllCfg = async (req,res,next) => {
-        throw new Error('This is an exception')
-    };
-    var addCfg =  (req,res,next) => {
-        console.log(req.body);
-        console.log(req.body.param1);        
-    };
-    return {
-        getAllCfg : getAllCfg,
-        addCfg : addCfg
-    }
-}());
+var cfg = require('../db/models/cfg');
+
+exports.addCfg = async (req,res,next) => {
+    var item = new cfg(req.body);
+    try {
+        let doc = await item.save();
+        res.json(doc);
+    } catch (error) {
+        next(error)
+    }    
+};
+exports.getAllCfg = async (req,res,next) => {
+    var data = cfg.find({},(err,items)=>{
+        var data = [];
+        items.forEach(i=>{
+            data.push(i);
+        })
+        res.json(data);
+    });    
+};

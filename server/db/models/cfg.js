@@ -1,4 +1,19 @@
-var mongoose = require('mongoose');
-var cfgSchema = require('../schemas/cfgSchema');
-var cfgModel = mongoose.model('Cfg',cfgSchema);
-module.exports = cfgModel;
+var mongoose = require('../connection/dbConnection');
+var Schema = mongoose.Schema;
+var cfgSchema = new Schema({
+    title : {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    audit: {
+        createdBy: String,
+        createdDate: Date,
+        updatedBy: String,
+        updatedDate: Date
+    }  
+  });
+  module.exports = mongoose.model('cfg',cfgSchema);
