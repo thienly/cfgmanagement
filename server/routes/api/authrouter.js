@@ -2,8 +2,8 @@ var mongoose = require('../../db/connection/dbConnection');
 var authRouter = require('express').Router();
 var User = require('../../db/models/user');
 var jwt = require('jsonwebtoken');
-authRouter.post('/token',(req,res,next)=>{
-    
+
+authRouter.post('/token',(req,res,next)=>{    
     User.findOne({name:req.body.name},(err,user)=>{
         console.log(user);
         if (err)
@@ -22,7 +22,7 @@ authRouter.post('/token',(req,res,next)=>{
                     if (error)
                         next(error);
                     res.status(200).json({success:true,message:"Enjoy your token", token: token });
-                })    
+                });    
             }
         }    
     })
